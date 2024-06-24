@@ -7,12 +7,8 @@ const config = {
 
 	kit: {
 		adapter: adapter({
-			pages: process.argv.includes('dev') ? 'build' : 'dist',
 			fallback: 'index.html'
-		}),
-		paths: {
-			base: process.argv.includes('dev') ? '' : '/dist'
-		}
+		})
 	}
 };
 
