@@ -1,3 +1,9 @@
+@import '@fontsource/manrope';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	--r-main-font: 'Manrope';
+}
