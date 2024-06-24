@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import Markdown from '$lib/deck/markdown.svelte';
 	import Notes from '$lib/deck/notes.svelte';
 	import Slide from '$lib/deck/slide.svelte';
@@ -14,5 +15,5 @@
 		</Slide>
 		<Slide animate>Vertical slide 2</Slide>
 	</Slide>
-	<Markdown name="/markdown/2024-07/test.md" />
+	<Markdown name="{base}/markdown/2024-07/test.md" />
 </Slides>
