@@ -23,7 +23,13 @@
 			plugins: [Markdown, Highlight, Notes]
 		});
 	});
+
+	export let title = '';
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
 <div class="reveal">
 	<div class="slides">
