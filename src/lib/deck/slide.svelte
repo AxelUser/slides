@@ -16,6 +16,7 @@
 	data-background-size={bgImageSize}
 	data-background-position={bgImagePos}
 	data-background-opacity={bgImageOpacity}
+	class="flex flex-col"
 >
 	<slot />
 </section>

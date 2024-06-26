@@ -5,6 +5,7 @@
 	import Markdown from 'reveal.js/plugin/markdown/markdown';
 	import Highlight from 'reveal.js/plugin/highlight/highlight';
 	import Notes from 'reveal.js/plugin/notes/notes';
+	import { loadDataSrcSVG } from '../plugins/data-src-svg/data-src-svg';
 
 	import 'reveal.js/dist/reveal.css';
 	import 'reveal.js/dist/theme/black.css';
@@ -21,6 +22,10 @@
 
 		deck.initialize({
 			plugins: [Markdown, Highlight, Notes]
+		});
+
+		deck.on('slidetransitionend', () => {
+			loadDataSrcSVG();
 		});
 	});
 

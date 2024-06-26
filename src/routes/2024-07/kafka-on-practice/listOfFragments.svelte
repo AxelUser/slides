@@ -1,4 +1,6 @@
 <script lang="ts">
+	import FragmentListItem from './FragmentListItem.svelte';
+
 	export let items: string[] = [];
 	export let ordered = false;
 </script>
@@ -6,17 +8,17 @@
 {#if ordered}
 	<ol>
 		{#each items as item}
-			<li class="fragment text-2xl [&:not(.current-fragment)]:text-gray-300">
+			<FragmentListItem>
 				{item}
-			</li>
+			</FragmentListItem>
 		{/each}
 	</ol>
 {:else}
 	<ul>
 		{#each items as item}
-			<li class="fragment text-2xl [&:not(.current-fragment)]:text-gray-300">
+			<FragmentListItem>
 				{item}
-			</li>
+			</FragmentListItem>
 		{/each}
 	</ul>
 {/if}
