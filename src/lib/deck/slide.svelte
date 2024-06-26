@@ -1,5 +1,6 @@
 <script lang="ts">
-	export let id: string | null = null;
+	export let slideId: string | null = null;
+	export let animationId: string | null = null;
 	export let animate = false;
 	export let restart = false;
 	export let bgImage: string | null = null;
@@ -9,7 +10,8 @@
 </script>
 
 <section
-	data-auto-animate-id={id}
+	id={slideId}
+	data-auto-animate-id={animationId}
 	data-auto-animate={animate || null}
 	data-auto-animate-restart={restart || null}
 	data-background-image={bgImage}

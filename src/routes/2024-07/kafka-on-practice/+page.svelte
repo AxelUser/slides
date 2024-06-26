@@ -249,7 +249,149 @@
 	</Slide>
 
 	<Slide>
-		<div class="text-8xl">Чтение сообщений</div>
+		<Slide>
+			<div class="text-8xl">Чтение сообщений</div>
+		</Slide>
+		<Slide>
+			<div class="text-start text-4xl">
+				Пример: несколько разных сервисов читают один и тот же топик
+			</div>
+			<div class="mermaid mb-10 mt-10 flex flex-col items-center">
+				{`
+					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+					flowchart LR
+						WebAPI[Web API] --> |"Publishes messages"| OrdersTopic[Kafka Topic: Orders]
+						OrdersTopic -->|Receive| MetricsCollector[MetricsCollector Service]
+						OrdersTopic -->|Receive| OrderProcessor[OrderProcessor Service]
+				`}
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-start text-4xl">
+				Пример: несколько разных сервисов читают один и тот же топик
+			</div>
+			<div class="mb-10 mt-10 flex flex-col gap-10">
+				<ul>
+					<FragmentListItem>Каждый сервис запущен на нескольких узлах</FragmentListItem>
+					<FragmentListItem>Оба сервиса должны получить все сообщения</FragmentListItem>
+					<FragmentListItem>
+						Каждое сообщение должно быть обработано одним узлом каждого сервиса
+					</FragmentListItem>
+				</ul>
+				<div class="m-10 flex flex-col">
+					<svg data-src="{assetsDir}/event-flow-animation.svg"> </svg>
+				</div>
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Consumer Groups</div>
+			<div class="mb-10 mt-10 flex flex-row items-center gap-10">
+				<ul class="space-y-2">
+					<FragmentListItem>Участники могут подписаться несколько топиков</FragmentListItem>
+					<FragmentListItem>
+						Партиции каждого топика распределяются между участниками одной и той же группы
+					</FragmentListItem>
+					<FragmentListItem>
+						Если подписчики располагаются в разных группах, то они получат одни и те же партиции
+					</FragmentListItem>
+				</ul>
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-6xl">Назначим группы</div>
+			<img
+				class="!m-auto !mt-10 h-[66%] w-[66%]"
+				src="{assetsDir}/consumer-groups.png"
+				alt="how consumer groups share partitions"
+			/>
+		</Slide>
+		<Slide slideId="group-rebalancing-slide">
+			<div class="text-6xl">
+				Если участник выйдет <span class="animated-strikethrough">в окно</span>
+			</div>
+			<img
+				class="!m-auto !mt-10 h-[66%] w-[66%]"
+				src="{assetsDir}/consumer-group-rebalancing.png"
+				alt="consumer group rebalanced"
+			/>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Коварство ребалансировки</div>
+			<ul class="!mt-10 block space-y-4">
+				<FragmentListItem>
+					Кафка ожидает что потребитель будет часто забирать сообщения, иначе она выполнит
+					ребалансировку
+				</FragmentListItem>
+				<FragmentListItem>Долгая обработка = постоянная ребалансировка</FragmentListItem>
+				<FragmentListItem>
+					Можно увеличить `max.poll.interval.ms` (по-умолчанию 5 минут)
+				</FragmentListItem>
+				<FragmentListItem>Можно уменьшить количество потребляемых сообщений</FragmentListItem>
+				<FragmentListItem>Можно ускорить обработку одного сообщения</FragmentListItem>
+			</ul>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Offset commit</div>
+			<ul class="!mt-10 block space-y-4">
+				<FragmentListItem>
+					Нужно отправлять оповещения об обработке сообщения, чтобы не читать одни и те же данные
+				</FragmentListItem>
+				<FragmentListItem>
+					Лучше проставлять commit самостоятельно после обработки сообщения
+				</FragmentListItem>
+			</ul>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Apache Kafka не будет вас ждать</div>
+			<ul class="!mt-10 block space-y-4">
+				<FragmentListItem>
+					Потребители должны успевать читать сообщения, чтобы не потерять данные
+				</FragmentListItem>
+				<FragmentListItem>Ускоряйте и оптимизируйте код</FragmentListItem>
+				<FragmentListItem>Добавьте побольше нод сервиса</FragmentListItem>
+			</ul>
+		</Slide>
+	</Slide>
+
+	<Slide>
+		<div class="text-8xl">Продвинутые паттерны</div>
+	</Slide>
+
+	<Slide>
+		<Slide>
+			<div class="text-8xl">Дедупликация сообщений</div>
+			<ul class="!mt-10 block space-y-4">
+				<FragmentListItem>
+					Из коробки только at least once доставка и то с натяжкой
+				</FragmentListItem>
+				<FragmentListItem>Есть Apache Kafka idempotent producer...</FragmentListItem>
+			</ul>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Идемпотентный потребитель</div>
+			<ul class="!mt-10 block space-y-4">
+				<FragmentListItem>Не надейтесь на exactly once delivery</FragmentListItem>
+				<FragmentListItem>
+					Уникальный и консистентный ключ сообщения позволит фильтровать уже обработанные сообщения
+				</FragmentListItem>
+			</ul>
+		</Slide>
+	</Slide>
+
+	<Slide>
+		<Slide>
+			<div class="text-8xl">Гарантированная доставка</div>
+		</Slide>
+	</Slide>
+
+	<Slide>
+		<Slide>
+			<div class="text-8xl">Распределённые транзакции в микросервисах</div>
+		</Slide>
+	</Slide>
+
+	<Slide>
+		<div class="text-8xl">LIVE DEMO</div>
 	</Slide>
 </Slides>
 
@@ -286,5 +428,45 @@
 
 	:global(.present) .fadeout-text {
 		animation: fade-out 4s forwards;
+	}
+
+	:global(.mermaid .nodeLabel) {
+		line-height: 1;
+		vertical-align: super;
+	}
+
+	:global(.mermaid .nodeLabel p) {
+		margin: 0;
+	}
+
+	:global(.mermaid .edgeLabel) {
+		line-height: 1 !important;
+		vertical-align: super;
+	}
+
+	.animated-strikethrough {
+		position: relative;
+		display: inline-block;
+	}
+
+	.animated-strikethrough::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 0;
+		height: 8px;
+		background-color: aliceblue;
+		transform: translateY(-50%);
+	}
+
+	:global(#group-rebalancing-slide.present) .animated-strikethrough::after {
+		animation: draw-strikethrough 2s forwards;
+	}
+
+	@keyframes draw-strikethrough {
+		to {
+			width: 100%;
+		}
 	}
 </style>
