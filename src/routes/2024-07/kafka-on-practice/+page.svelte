@@ -4,7 +4,7 @@
 	import Slide from '$lib/deck/slide.svelte';
 	import Slides from '$lib/deck/slides.svelte';
 	import FragmentListItem from './FragmentListItem.svelte';
-	import ListOfFragments from './ListOfFragments.svelte';
+	import FragmentsList from './FragmentsList.svelte';
 	import Social from './social.svelte';
 
 	const assetsDir = `${base}/slides/2024-07/kafka-on-practice`;
@@ -20,7 +20,7 @@
 		<div class="flex flex-col gap-16">
 			<div class="text-8xl">Поговорим</div>
 			<div>
-				<ListOfFragments
+				<FragmentsList
 					ordered
 					items={[
 						'Что такое Apache Kafka',
@@ -39,7 +39,7 @@
 			<div class="flex gap-48">
 				<img class="h-80 w-80 object-contain" src="{assetsDir}/ava-ai.jpg" alt="it's me" />
 				<div class="self-center">
-					<ListOfFragments
+					<FragmentsList
 						items={[
 							'Senior Software Engineer @ Infobip',
 							'4 года работаю с Apache Kafka',
@@ -57,7 +57,7 @@
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Что оно такое?</div>
 			<div>
-				<ListOfFragments
+				<FragmentsList
 					items={[
 						'Реплицированный распределённый лог сообщений',
 						'Сообщения записываются в конец файла, а читаются с начала',
@@ -76,7 +76,7 @@
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Кластер Apache Kafka</div>
 			<div>
-				<ListOfFragments
+				<FragmentsList
 					items={[
 						'Apache Kafka - распределённое приложение',
 						'Данные реплицируются и шардируются между узлами',
@@ -97,7 +97,7 @@
 		<Slide>
 			<div class="text-8xl">Топики и Партиции</div>
 			<div class="m-10">
-				<ListOfFragments
+				<FragmentsList
 					items={['Очереди называются топиками (англ. topic)', 'Партиции - кусочки топика']}
 				/>
 			</div>
@@ -129,7 +129,7 @@
 		<Slide>
 			<div class="text-8xl">Куда записываются сообщения</div>
 			<div class="m-10">
-				<ListOfFragments
+				<FragmentsList
 					items={['Сообщения хранятся в партициях топика', 'Упорядочены только в рамках партиции']}
 				/>
 			</div>
@@ -245,7 +245,7 @@
 		<Slide>
 			<div class="text-8xl">Кто находит партицию</div>
 			<div class="m-10">
-				<ListOfFragments
+				<FragmentsList
 					items={[
 						'Клиент считает хеш от ключа для выбора партиции',
 						'Если ключа нет - по порядку перебирает партиции'
