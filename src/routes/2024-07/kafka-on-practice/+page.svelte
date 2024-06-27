@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import Notes from '$lib/deck/notes.svelte';
 	import Slide from '$lib/deck/slide.svelte';
 	import Slides from '$lib/deck/slides.svelte';
 	import FragmentListItem from './FragmentListItem.svelte';
@@ -7,14 +8,15 @@
 	import Social from './social.svelte';
 
 	const assetsDir = `${base}/slides/2024-07/kafka-on-practice`;
+	const defaultBgOpacity = '0.2';
 </script>
 
 <Slides title="Apache Kafka на практике">
-	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="text-8xl">Apache Kafka на практике</div>
 		<Social />
 	</Slide>
-	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="flex flex-col gap-16">
 			<div class="text-8xl">Поговорим</div>
 			<div>
@@ -48,10 +50,10 @@
 			</div>
 		</div>
 	</Slide>
-	<Slide bgImage="{assetsDir}/all-about-apache-kafka.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/all-about-apache-kafka.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="text-8xl">Всё что нужно знать про Apache Kafka</div>
 	</Slide>
-	<Slide bgImage="{assetsDir}/bg-roach-reading-messages.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/bg-roach-reading-messages.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Что оно такое?</div>
 			<div>
@@ -64,8 +66,13 @@
 				/>
 			</div>
 		</div>
+		<Notes>
+			Это достаточно нестандартный , но достаточно полноценный брокер сообщений, по сути он упрощён
+			до append-only message log, то есть сообщения просто записываются в конец условного файла и
+			удаляются если файл вырос за переделы максимального объема в байтах или за временные рамки.
+		</Notes>
 	</Slide>
-	<Slide bgImage="{assetsDir}/kafka-cluster-bg.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/kafka-cluster-bg.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Кластер Apache Kafka</div>
 			<div>
@@ -78,8 +85,15 @@
 				/>
 			</div>
 		</div>
+		<Notes>
+			Apache Kafka - это очень упрощённо исполняемый файл, несколько таких исполняемых файлов можно
+			объединить в кластер и в этом случае мы получим распределенное прложение, которое само
+			балансирует нагрузку и данные между своими компонентами, то есть одни и те же сообщения могут
+			храниться сразу на нескольких узлах и в случае потери одного узла мы не потеряем все данные и
+			сможем продолжить работу.
+		</Notes>
 	</Slide>
-	<Slide bgImage="{assetsDir}/topics-and-partitions-bg.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/bg-topics-and-partitions.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-8xl">Топики и Партиции</div>
 			<div class="m-10">
@@ -104,7 +118,7 @@
 			</div>
 		</Slide>
 	</Slide>
-	<Slide bgImage="{assetsDir}/bg-where-messages-are-written.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/bg-where-messages-are-written.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-8xl">Куда записываются сообщения</div>
 			<div class="m-10">
@@ -120,7 +134,7 @@
 			</div>
 		</Slide>
 	</Slide>
-	<Slide bgImage="{assetsDir}/bg-message-structure.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/bg-message-structure.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="text-8xl">Структура сообщения</div>
 		<table class="!mt-10 table-fixed text-xl">
 			<tbody>
@@ -133,7 +147,7 @@
 			</tbody>
 		</table>
 	</Slide>
-	<Slide bgImage="{assetsDir}/bg-message-key-and-ballancing.webp" bgImageOpacity="0.05">
+	<Slide bgImage="{assetsDir}/bg-message-key-and-ballancing.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-8xl">Ключ сообщения и балансировка</div>
 			<div class="mx-auto mt-10 h-[66%] w-[66%]">
@@ -249,7 +263,7 @@
 		</Slide>
 	</Slide>
 
-	<Slide bgImage="{assetsDir}/bg-roach-reading-messages.webp" bgImageOpacity="0.05">
+	<Slide bgImage="{assetsDir}/bg-roach-reading-messages.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-8xl">Чтение сообщений</div>
 		</Slide>
@@ -354,11 +368,11 @@
 		</Slide>
 	</Slide>
 
-	<Slide bgImage="{assetsDir}/bg-advanced-patterns.webp" bgImageOpacity="0.05">
+	<Slide bgImage="{assetsDir}/bg-advanced-patterns.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="text-8xl">Продвинутые паттерны</div>
 	</Slide>
 
-	<Slide bgImage="{assetsDir}/bg-duplicates.webp" bgImageOpacity="0.05">
+	<Slide bgImage="{assetsDir}/bg-duplicates.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-8xl">Дедупликация сообщений</div>
 			<ul class="!mt-10 block space-y-4">
@@ -381,7 +395,7 @@
 		</Slide>
 	</Slide>
 
-	<Slide bgImage="{assetsDir}/bg-delivery.webp" bgImageOpacity="0.05">
+	<Slide bgImage="{assetsDir}/bg-delivery.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-8xl">Гарантированная доставка</div>
 		</Slide>
@@ -533,9 +547,82 @@
 		</Slide>
 	</Slide>
 
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-distributed-transactions.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-6xl">Распределённые транзакции в микросервисах</div>
+			<ul class="!mt-10 space-y-4">
+				<FragmentListItem>Синхронные алгоритмы</FragmentListItem>
+				<FragmentListItem>
+					Сложно объединить очень разные сервисы одной транзакцией
+				</FragmentListItem>
+			</ul>
+		</Slide>
+		<Slide>
+			<div class="text-6xl">Паттерн Saga</div>
+			<div class="mermaid mb-10 mt-10 flex flex-col items-center">
+				{`
+					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+					graph LR
+						A[Start Saga] --> B[Local Transaction 1]
+						B --> C[Local Transaction 2]
+						C --> D[Local Transaction 3]
+						D --> E[Local Transaction N]
+						E --> F[End Saga]
+
+						subgraph Saga
+							B
+							C
+							D
+							E
+						end
+				`}
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-6xl">Оркестрация</div>
+			<div class="mermaid mb-10 mt-10 flex flex-col items-center">
+				{`
+					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+					graph TB
+						Start["Start Saga"] --> Saga
+
+						subgraph Saga["Orchestration based saga"]
+
+						SagaEventsTopic["Saga Events Topic"] -. consumed by .-> Orchestrator
+						Orchestrator -- publish to --> Orders["Topic Orders"]
+						Orders -. consumed by .-> OrdersService["Orders Service"]
+						OrdersService -- publish to --> SagaEventsTopic["Topic SagaEvents"]
+						
+						
+						Orchestrator -- publish to --> Shipping[Topic Shipping]
+						Shipping -. consumed by .-> ShippingService["Shipping Service"]
+						ShippingService -- publish to --> SagaEventsTopic
+
+						end
+
+						Saga --> Finish["Finish Saga"]
+				`}
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-6xl">Хореография</div>
+			<div class="mermaid mb-10 mt-10 flex flex-col items-center">
+				{`
+					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+					graph LR
+						Start[Start Saga] --> Saga
+						subgraph Saga["Choreography based saga"]
+							direction TB
+							OrdersTopic[Topic Orders] -. consumed by .-> OrdersService[Order Service]
+							OrdersService -- publish to --> OrdersEventsTopic[Topic OrdersEvents]
+							OrdersEventsTopic -. consumed by .-> ShippingService[Shipping Service]
+							ShippingService -- publish to --> ShippingEventsTopic[Topic ShippingEvents]
+							ShippingEventsTopic -. consumed by .-> OrdersService
+						end
+
+						Saga --> End[Finish Saga]
+				`}
+			</div>
 		</Slide>
 	</Slide>
 
@@ -548,7 +635,7 @@
 		/>
 	</Slide>
 
-	<Slide bgImage="{assetsDir}/bg-thanks.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/bg-thanks.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="text-8xl">Спасибо за внимание</div>
 		<Social />
 	</Slide>
