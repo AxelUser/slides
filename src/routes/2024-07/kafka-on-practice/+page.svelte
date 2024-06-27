@@ -8,7 +8,7 @@
 	import Social from './social.svelte';
 
 	const assetsDir = `${base}/slides/2024-07/kafka-on-practice`;
-	const defaultBgOpacity = '0.2';
+	const defaultBgOpacity = '0.1';
 </script>
 
 <Slides title="Apache Kafka на практике">
