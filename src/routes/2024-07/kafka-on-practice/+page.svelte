@@ -39,13 +39,12 @@
 			<div class="flex gap-48">
 				<img class="h-80 w-80 object-contain" src="{assetsDir}/ava-ai.jpg" alt="it's me" />
 				<div class="self-center">
-					<FragmentsList
-						items={[
-							'Senior Software Engineer @ Infobip',
-							'4 года работаю с Apache Kafka',
-							'Специализируюсь на распределённых системах'
-						]}
-					/>
+					<ul class="space-y-4">
+						<FragmentListItem>Senior Software Engineer @ Infobip</FragmentListItem>
+						<FragmentListItem>10 лет пишу софт</FragmentListItem>
+						<FragmentListItem>4 года работаю с Apache Kafka</FragmentListItem>
+						<FragmentListItem>Специализируюсь на распределённых системах</FragmentListItem>
+					</ul>
 				</div>
 			</div>
 		</div>
