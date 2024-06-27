@@ -4,6 +4,7 @@
 	import Slides from '$lib/deck/slides.svelte';
 	import FragmentListItem from './FragmentListItem.svelte';
 	import ListOfFragments from './ListOfFragments.svelte';
+	import SocialIcons from '@rodneylab/svelte-social-icons';
 
 	const assetsDir = `${base}/slides/2024-07/kafka-on-practice`;
 </script>
@@ -11,9 +12,39 @@
 <Slides title="Apache Kafka на практике">
 	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity="0.1">
 		<div class="text-8xl">Apache Kafka на практике</div>
-		<div class="mt-8 text-sm">Алексей Мальцев, @AxelUser</div>
+		<div class="mt-10 text-lg">
+			Алексей Мальцев, <a
+				class="!text-orange-400"
+				href="https://www.maltsev.space/"
+				target="_blank"
+			>
+				maltsev.space
+			</a>
+		</div>
+		<div class="mt-10 flex flex-row justify-center space-x-5">
+			<a href="https://github.com/AxelUser" target="_blank">
+				<SocialIcons
+					alt="@AxelUser"
+					network="github"
+					fgColor="#eeeeee"
+					bgColor="#111111"
+					width="32"
+					height="32"
+				/>
+			</a>
+			<a href="https://t.me/AxelUser" target="_blank">
+				<SocialIcons
+					alt="@AxelUser"
+					network="telegram"
+					fgColor="#eeeeee"
+					bgColor="#111111"
+					width="32"
+					height="32"
+				/>
+			</a>
+		</div>
 	</Slide>
-	<Slide>
+	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity="0.1">
 		<div class="flex flex-col gap-16">
 			<div class="text-8xl">Поговорим</div>
 			<div>
@@ -50,7 +81,7 @@
 	<Slide bgImage="{assetsDir}/all-about-apache-kafka.webp" bgImageOpacity="0.1">
 		<div class="text-8xl">Всё что нужно знать про Apache Kafka</div>
 	</Slide>
-	<Slide bgImage="{assetsDir}/roach-reading-messages.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/bg-roach-reading-messages.webp" bgImageOpacity="0.1">
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Что оно такое?</div>
 			<div>
@@ -78,8 +109,8 @@
 			</div>
 		</div>
 	</Slide>
-	<Slide>
-		<Slide bgImage="{assetsDir}/topics-and-partitions-bg.webp" bgImageOpacity="0.1">
+	<Slide bgImage="{assetsDir}/topics-and-partitions-bg.webp" bgImageOpacity="0.1">
+		<Slide>
 			<div class="text-8xl">Топики и Партиции</div>
 			<div class="m-10">
 				<ListOfFragments
@@ -92,7 +123,7 @@
 				/>
 			</div>
 		</Slide>
-		<Slide animate bgImage="{assetsDir}/topics-and-partitions-bg.webp" bgImageOpacity="0.1">
+		<Slide>
 			<div class="text-6xl">Топики и Партиции</div>
 			<div class="mx-auto h-[66%] w-[66%]">
 				<img
@@ -103,7 +134,7 @@
 			</div>
 		</Slide>
 	</Slide>
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-where-messages-are-written.webp" bgImageOpacity="0.1">
 		<Slide>
 			<div class="text-8xl">Куда записываются сообщения</div>
 			<div class="m-10">
@@ -119,7 +150,7 @@
 			</div>
 		</Slide>
 	</Slide>
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-message-structure.webp" bgImageOpacity="0.1">
 		<div class="text-8xl">Структура сообщения</div>
 		<table class="!mt-10 table-fixed text-xl">
 			<tbody>
@@ -132,7 +163,7 @@
 			</tbody>
 		</table>
 	</Slide>
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-message-key-and-ballancing.webp" bgImageOpacity="0.05">
 		<Slide>
 			<div class="text-8xl">Ключ сообщения и балансировка</div>
 			<div class="mx-auto mt-10 h-[66%] w-[66%]">
@@ -248,7 +279,7 @@
 		</Slide>
 	</Slide>
 
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-roach-reading-messages.webp" bgImageOpacity="0.05">
 		<Slide>
 			<div class="text-8xl">Чтение сообщений</div>
 		</Slide>
@@ -353,18 +384,20 @@
 		</Slide>
 	</Slide>
 
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-advanced-patterns.webp" bgImageOpacity="0.05">
 		<div class="text-8xl">Продвинутые паттерны</div>
 	</Slide>
 
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-duplicates.webp" bgImageOpacity="0.05">
 		<Slide>
 			<div class="text-8xl">Дедупликация сообщений</div>
 			<ul class="!mt-10 block space-y-4">
 				<FragmentListItem>
 					Из коробки только at least once доставка и то с натяжкой
 				</FragmentListItem>
-				<FragmentListItem>Есть Apache Kafka idempotent producer...</FragmentListItem>
+				<FragmentListItem>
+					Встроенный идемпотентный отправитель отсеивает только повторы самого клиента
+				</FragmentListItem>
 			</ul>
 		</Slide>
 		<Slide>
@@ -378,20 +411,175 @@
 		</Slide>
 	</Slide>
 
-	<Slide>
+	<Slide bgImage="{assetsDir}/bg-delivery.webp" bgImageOpacity="0.05">
 		<Slide>
 			<div class="text-8xl">Гарантированная доставка</div>
+		</Slide>
+		<Slide>
+			<div class="mermaid">
+				{`
+					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+					sequenceDiagram
+						actor User
+						participant OrdersService as Orders Service
+						participant OrdersDB as Orders Database
+						participant ShippingService as Shipping Service
+
+						User->>OrdersService: Создать заказ
+						
+						activate OrdersService
+						
+						OrdersService->>OrdersDB: Создать запись о заказе
+						
+						activate OrdersDB
+
+						alt Заказ уже создан
+
+						OrdersDB-->>OrdersService: Заказ не сохранён из-за конфликта
+
+						OrdersService-->>User: Ошибка: Заказ уже существует
+
+						else Заказа в базе нет
+						
+						OrdersDB-->>OrdersService: Заказ сохранён
+						deactivate OrdersDB
+
+						OrdersService->>ShippingService: Отправить заказ (async)
+
+						OrdersService-->>User: Заказ создан
+						deactivate OrdersService
+
+						end
+
+						activate ShippingService
+						ShippingService-->>OrdersService: Заказ отправлен
+						deactivate ShippingService
+
+						activate OrdersService
+
+						OrdersService->>OrdersDB: Обновить запись заказа
+
+						activate OrdersDB
+						OrdersDB-->>OrdersService: Заказ обновлён
+						deactivate OrdersDB
+
+						deactivate OrdersService
+				`}
+			</div>
+		</Slide>
+		<Slide>
+			<div class="flex flex-row justify-start gap-10">
+				<img
+					class="!mt-0 w-[70%]"
+					src="{assetsDir}/delivery-failure-errors.png"
+					alt="3 points of failure in delivery use-case"
+				/>
+				<div class="flex flex-col">
+					<div class="text-left text-2xl">Три плохих сценария:</div>
+					<ul class="!mt-10 space-y-4">
+						<FragmentListItem>Сохранение в БД завершилось с ошибкой</FragmentListItem>
+						<FragmentListItem>
+							Данные были сохранены, но отправка завершилась с ошибкой
+						</FragmentListItem>
+						<FragmentListItem>
+							Сообщение было отправлено, но до пользователя ответ не дошёл
+						</FragmentListItem>
+					</ul>
+				</div>
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Транзакции на отправку в топик</div>
+
+			<div class="mx-auto flex flex-row items-start justify-center text-2xl">
+				<div class="w-1/3 text-green-400">
+					<ul class="!mt-10 space-y-4">
+						<li class="fragment">Можно объединить с транзакцией в БД</li>
+					</ul>
+				</div>
+				<div class="w-1/3 text-red-500">
+					<ul class="!ml-20 !mt-10 space-y-4">
+						<li class="fragment">Дополнительные издержки</li>
+						<li class="fragment">Всё ещё есть шанс потерять сообщение</li>
+					</ul>
+				</div>
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Transactional Outbox</div>
+		</Slide>
+		<Slide>
+			<div class="mermaid mb-10 mt-10 flex flex-col items-center">
+				{`
+					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
+					sequenceDiagram
+						actor User
+						participant OrdersService as Orders Service
+						participant OrdersTable as Orders Table
+						participant OutboxTable as Outbox Table
+						participant EventsDispatcher as Events Dispatcher
+						participant ShippingService as Shipping Service
+
+						User->>OrdersService: Создать заказ
+						
+						activate OrdersService
+						
+						critical Транзакция в БД
+						OrdersService->>OrdersTable: Вставить заказ
+						OrdersService->>OutboxTable: Вставить сообщение
+						end
+
+						OrdersService-->>User: Заказ создан
+						deactivate OrdersService
+
+						activate EventsDispatcher
+
+						EventsDispatcher->>OutboxTable: Запросить сообщения
+						activate OutboxTable
+						OutboxTable->>EventsDispatcher: Сообщения на отправку
+						deactivate OutboxTable
+
+						critical Транзакция в БД
+						EventsDispatcher->>ShippingService: Отправить заказ (async)
+						EventsDispatcher->>OutboxTable: Удалить сообщение
+						EventsDispatcher->>OrdersTable: Обновить заказ
+						end
+
+						deactivate EventsDispatcher
+				`}
+			</div>
+		</Slide>
+		<Slide>
+			<div class="text-8xl">Вариативность Outbox</div>
+			<ul class="!mt-10 space-y-4">
+				<FragmentListItem>"Стриминг" данных из таблицы с данными</FragmentListItem>
+				<FragmentListItem>
+					Помечать сообщения отправленными, слушая топик в который сам пишешь
+				</FragmentListItem>
+			</ul>
+		</Slide>
+		<Slide>
+			<div class="text-5xl">Таблица Outbox - по сути ещё одна очередь</div>
 		</Slide>
 	</Slide>
 
 	<Slide>
 		<Slide>
-			<div class="text-8xl">Распределённые транзакции в микросервисах</div>
+			<div class="text-6xl">Распределённые транзакции в микросервисах</div>
 		</Slide>
 	</Slide>
 
 	<Slide>
 		<div class="text-8xl">LIVE DEMO</div>
+		<img
+			class="!mx-auto w-1/3"
+			src="{assetsDir}/live-demo-qr.png"
+			alt="qr code for the live demo"
+		/>
+	</Slide>
+
+	<Slide bgImage="{assetsDir}/bg-thanks.webp" bgImageOpacity="0.1">
+		<div class="text-8xl">Спасибо за внимание</div>
 	</Slide>
 </Slides>
 
