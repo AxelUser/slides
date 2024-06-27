@@ -38,7 +38,9 @@
 	"dependencies": {
 		"@fontsource/jetbrains-mono": "^5.0.20",
 		"@fontsource/manrope": "^5.0.20",
+		"@rodneylab/svelte-social-icons": "^0.0.30",
 		"@types/reveal.js": "^5.0.3",
-		"reveal.js": "^5.1.0"
+		"reveal.js": "^5.1.0",
+		"reveal.js-mermaid-plugin": "^2.3.0"
 	}
 }
