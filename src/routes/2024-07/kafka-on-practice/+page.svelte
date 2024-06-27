@@ -4,7 +4,7 @@
 	import Slides from '$lib/deck/slides.svelte';
 	import FragmentListItem from './FragmentListItem.svelte';
 	import ListOfFragments from './ListOfFragments.svelte';
-	import SocialIcons from '@rodneylab/svelte-social-icons';
+	import Social from './social.svelte';
 
 	const assetsDir = `${base}/slides/2024-07/kafka-on-practice`;
 </script>
@@ -12,37 +12,7 @@
 <Slides title="Apache Kafka на практике">
 	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity="0.1">
 		<div class="text-8xl">Apache Kafka на практике</div>
-		<div class="mt-10 text-lg">
-			Алексей Мальцев, <a
-				class="!text-orange-400"
-				href="https://www.maltsev.space/"
-				target="_blank"
-			>
-				maltsev.space
-			</a>
-		</div>
-		<div class="mt-10 flex flex-row justify-center space-x-5">
-			<a href="https://github.com/AxelUser" target="_blank">
-				<SocialIcons
-					alt="@AxelUser"
-					network="github"
-					fgColor="#eeeeee"
-					bgColor="#111111"
-					width="32"
-					height="32"
-				/>
-			</a>
-			<a href="https://t.me/AxelUser" target="_blank">
-				<SocialIcons
-					alt="@AxelUser"
-					network="telegram"
-					fgColor="#eeeeee"
-					bgColor="#111111"
-					width="32"
-					height="32"
-				/>
-			</a>
-		</div>
+		<Social />
 	</Slide>
 	<Slide bgImage="{assetsDir}/title-cover.webp" bgImageOpacity="0.1">
 		<div class="flex flex-col gap-16">
@@ -580,6 +550,7 @@
 
 	<Slide bgImage="{assetsDir}/bg-thanks.webp" bgImageOpacity="0.1">
 		<div class="text-8xl">Спасибо за внимание</div>
+		<Social />
 	</Slide>
 </Slides>
 
