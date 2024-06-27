@@ -20,16 +20,13 @@
 		<div class="flex flex-col gap-16">
 			<div class="text-8xl">Поговорим</div>
 			<div>
-				<FragmentsList
-					ordered
-					items={[
-						'Что такое Apache Kafka',
-						'Как работают очереди изнутри и снаружи',
-						'Как сервисы пишут и читают сообщения',
-						'Какие популярные паттерны интеграции с Apache Kafka',
-						'Live demo'
-					]}
-				/>
+				<ol class="space-y-4">
+					<FragmentListItem>Что такое Apache Kafka</FragmentListItem>
+					<FragmentListItem>Внутреннее устройство</FragmentListItem>
+					<FragmentListItem>Как сервисы пишут и читают сообщения</FragmentListItem>
+					<FragmentListItem>Продвинутые паттерны работы с Apache Kafka</FragmentListItem>
+					<FragmentListItem>Live demo</FragmentListItem>
+				</ol>
 			</div>
 		</div>
 	</Slide>
@@ -636,7 +633,7 @@
 				{`
 					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
 					sequenceDiagram
-						actor User
+						actor User as Грегор Замса
 						participant OrdersService as Orders Service
 						participant OrdersDB as Orders Database
 						participant ShippingService as Shipping Service
@@ -766,7 +763,7 @@
 				{`
 					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
 					sequenceDiagram
-						actor User
+						actor User as Грегор Замса
 						participant OrdersService as Orders Service
 						participant OrdersTable as Orders Table
 						participant OutboxTable as Outbox Table
@@ -775,11 +772,10 @@
 
 						User->>OrdersService: Создать заказ
 						
-						activate OrdersService
-						
 						critical Транзакция в БД
-						OrdersService->>OrdersTable: Вставить заказ
-						OrdersService->>OutboxTable: Вставить сообщение
+							activate OrdersService
+							OrdersService->>OrdersTable: Вставить заказ
+							OrdersService->>OutboxTable: Вставить сообщение
 						end
 
 						OrdersService-->>User: Заказ создан
@@ -793,9 +789,9 @@
 						deactivate OutboxTable
 
 						critical Транзакция в БД
-						EventsDispatcher->>ShippingService: Отправить заказ (async)
-						EventsDispatcher->>OutboxTable: Удалить сообщение
-						EventsDispatcher->>OrdersTable: Обновить заказ
+							EventsDispatcher->>ShippingService: Отправить заказ (async)
+							EventsDispatcher->>OutboxTable: Удалить сообщение
+							EventsDispatcher->>OrdersTable: Обновить заказ
 						end
 
 						deactivate EventsDispatcher
