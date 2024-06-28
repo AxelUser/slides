@@ -1,9 +1,16 @@
 <script lang="ts">
-	const pageModules = import.meta.glob('./**/*+page.svelte');
-	const urls = Object.keys(pageModules).map((item) => item.replace('/+page.svelte', ''));
-	console.log(urls);
+	const presentations = [
+		{
+			title: 'Кафка на практике',
+			url: './2024-07/kafka-on-practice'
+		}
+	];
 </script>
 
-{#each urls as url}
-	<a href={url}> {url} </a>
-{/each}
+<div class="mx-auto my-10 grid size-2/3 grid-cols-3 space-x-10">
+	{#each presentations as p}
+		<div class="flex h-[200px] w-[300px] flex-col bg-gray-400">
+			<a class="m-auto block text-2xl" href={p.url}> {p.title} </a>
+		</div>
+	{/each}
+</div>

@@ -5,7 +5,7 @@
 	import Markdown from 'reveal.js/plugin/markdown/markdown';
 	import Highlight from 'reveal.js/plugin/highlight/highlight';
 	import Notes from 'reveal.js/plugin/notes/notes';
-	import Mermaid from 'reveal.js-mermaid-plugin/plugin/mermaid/mermaid';
+	import RevealMermaid from 'reveal.js-mermaid-plugin/plugin/mermaid/mermaid';
 	import { loadDataSrcSVG } from '../plugins/data-src-svg/data-src-svg';
 
 	import 'reveal.js/dist/reveal.css';
@@ -20,7 +20,7 @@
 			controls: true,
 			progress: true,
 			slideNumber: 'c/t',
-			plugins: [Markdown, Highlight, Notes, Mermaid]
+			plugins: [Markdown, Highlight, Notes, RevealMermaid]
 		});
 
 		deck.initialize();
