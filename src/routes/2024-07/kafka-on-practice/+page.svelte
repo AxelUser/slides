@@ -344,7 +344,7 @@
 					src="{assetsDir}/topic-partition-segment.webp"
 					alt="three cats meme"
 				/>
-				<ul class="">
+				<ul class="space-y-5">
 					<FragmentListItem>
 						Партиция делится на один активный сегмент и ряд неактивных сегментов
 					</FragmentListItem>
@@ -491,8 +491,8 @@
 			</Notes>
 		</Slide>
 		<Slide>
-			<div class="text-8xl">Коварство ребалансировки</div>
-			<ul class="!mt-10 block space-y-4">
+			<div class="text-6xl">Коварство ребалансировки</div>
+			<ul class="!mt-10 w-5/6 space-y-4">
 				<FragmentListItem>
 					Кафка ожидает что потребитель будет часто забирать сообщения, иначе она выполнит
 					ребалансировку
@@ -759,44 +759,10 @@
 			</Notes>
 		</Slide>
 		<Slide>
-			<div class="mermaid mb-10 mt-10 flex flex-col items-center">
-				{`
-					%%{init: {'theme': 'dark', 'themeVariables': { 'darkMode': true }}}%%
-					sequenceDiagram
-						actor User as Грегор Замса
-						participant OrdersService as Orders Service
-						participant OrdersTable as Orders Table
-						participant OutboxTable as Outbox Table
-						participant EventsDispatcher as Events Dispatcher
-						participant ShippingService as Shipping Service
-
-						User->>OrdersService: Создать заказ
-						
-						critical Транзакция в БД
-							activate OrdersService
-							OrdersService->>OrdersTable: Вставить заказ
-							OrdersService->>OutboxTable: Вставить сообщение
-						end
-
-						OrdersService-->>User: Заказ создан
-						deactivate OrdersService
-
-						activate EventsDispatcher
-
-						EventsDispatcher->>OutboxTable: Запросить сообщения
-						activate OutboxTable
-						OutboxTable->>EventsDispatcher: Сообщения на отправку
-						deactivate OutboxTable
-
-						critical Транзакция в БД
-							EventsDispatcher->>ShippingService: Отправить заказ (async)
-							EventsDispatcher->>OutboxTable: Удалить сообщение
-							EventsDispatcher->>OrdersTable: Обновить заказ
-						end
-
-						deactivate EventsDispatcher
-				`}
-			</div>
+			<img
+				src="{assetsDir}/outbox-pattern-example.png"
+				alt="3 points of failure in delivery use-case"
+			/>
 			<Notes>
 				Его суть достаточно проста - вместо того чтобы одновременно сохранять данные и отправлять
 				сообщение в топик, вы при обработке входящего запроса или сообщения только сохраняете запись
