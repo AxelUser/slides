@@ -21,11 +21,11 @@
 			<div class="text-8xl">Поговорим</div>
 			<div>
 				<ol class="space-y-4">
-					<FragmentListItem>Что такое Apache Kafka</FragmentListItem>
-					<FragmentListItem>Внутреннее устройство</FragmentListItem>
-					<FragmentListItem>Как сервисы пишут и читают сообщения</FragmentListItem>
-					<FragmentListItem>Продвинутые паттерны работы с Apache Kafka</FragmentListItem>
-					<FragmentListItem>Live demo</FragmentListItem>
+					<li class="text-2xl">Что такое Apache Kafka</li>
+					<li class="text-2xl">Внутреннее устройство</li>
+					<li class="text-2xl">Как сервисы пишут и читают сообщения</li>
+					<li class="text-2xl">Продвинутые паттерны работы с Apache Kafka</li>
+					<li class="text-2xl">Live demo</li>
 				</ol>
 			</div>
 		</div>
@@ -37,10 +37,10 @@
 				<img class="h-80 w-80 object-contain" src="{assetsDir}/ava-ai.jpg" alt="it's me" />
 				<div class="self-center">
 					<ul class="space-y-4">
-						<FragmentListItem>Senior Software Engineer @ Infobip</FragmentListItem>
-						<FragmentListItem>10 лет пишу софт</FragmentListItem>
-						<FragmentListItem>4 года работаю с Apache Kafka</FragmentListItem>
-						<FragmentListItem>Специализируюсь на распределённых системах</FragmentListItem>
+						<li class="text-2xl">Senior Software Engineer @ Infobip</li>
+						<li class="text-2xl">10 лет пишу софт</li>
+						<li class="text-2xl">4 года работаю с Apache Kafka</li>
+						<li class="text-2xl">Специализируюсь на распределённых системах</li>
 					</ul>
 				</div>
 			</div>
@@ -53,13 +53,10 @@
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Что оно такое?</div>
 			<div>
-				<FragmentsList
-					items={[
-						'Реплицированный распределённый лог сообщений',
-						'Сообщения записываются в конец файла, а читаются с начала',
-						'Время жизни каждого сообщения ограничено по времени и памяти'
-					]}
-				/>
+				<ul class="space-y-4">
+					<li class="text-2xl">Реплицированный и распределённый лог сообщений</li>
+					<li class="text-2xl">Время жизни каждого сообщения ограничено по времени и памяти</li>
+				</ul>
 			</div>
 		</div>
 		<Notes>
@@ -72,13 +69,11 @@
 		<div class="flex flex-col justify-center gap-16">
 			<div class="text-8xl">Кластер Apache Kafka</div>
 			<div>
-				<FragmentsList
-					items={[
-						'Apache Kafka - распределённое приложение',
-						'Данные реплицируются и шардируются между узлами',
-						'Работа с очередями распределена между узлами'
-					]}
-				/>
+				<ul class="space-y-4">
+					<li class="text-2xl">Apache Kafka - распределённое приложение</li>
+					<li class="text-2xl">Данные реплицируются и шардируются между узлами</li>
+					<li class="text-2xl">Работа с очередями распределена между узлами</li>
+				</ul>
 			</div>
 		</div>
 		<Notes>
@@ -93,9 +88,10 @@
 		<Slide>
 			<div class="text-8xl">Топики и Партиции</div>
 			<div class="m-10">
-				<FragmentsList
-					items={['Очереди называются топиками (англ. topic)', 'Партиции - кусочки топика']}
-				/>
+				<ul class="space-y-4">
+					<li class="text-2xl">Очереди называются топиками (англ. topic)</li>
+					<li class="text-2xl">Партиции - кусочки топика</li>
+				</ul>
 			</div>
 			<Notes>
 				В Apache Kafka очереди называют топиками (англ. topic, я не буду переводить его дословно как
@@ -125,9 +121,10 @@
 		<Slide>
 			<div class="text-8xl">Куда записываются сообщения</div>
 			<div class="m-10">
-				<FragmentsList
-					items={['Сообщения хранятся в партициях топика', 'Упорядочены только в рамках партиции']}
-				/>
+				<ul class="space-y-4">
+					<li class="text-2xl">Сообщения хранятся в партициях топика</li>
+					<li class="text-2xl text-yellow-400">Упорядочены только в рамках партиции</li>
+				</ul>
 			</div>
 			<Notes>
 				Сообщения по факту хранятся именно в партициях и упорядоченны только в рамках своей
@@ -239,14 +236,16 @@
 			</Notes>
 		</Slide>
 		<Slide>
-			<div class="text-8xl">Кто находит партицию</div>
+			<div class="text-8xl">Как находят партицию</div>
 			<div class="m-10">
-				<FragmentsList
-					items={[
-						'Клиент считает хеш от ключа для выбора партиции',
-						'Если ключа нет - по порядку перебирает партиции'
-					]}
-				/>
+				<ul class="space-y-4">
+					<li class="text-2xl">
+						<span class="text-green-400">Ключ есть</span> - считает хеш для выбора партиции
+					</li>
+					<li class="text-2xl">
+						<span class="text-red-500">Ключа нет</span> - по порядку перебирает партиции
+					</li>
+				</ul>
 			</div>
 			<Notes>
 				Важно добавить, что сама Apache Kafka не связывает ключ сообщения с номером партиции, это
@@ -282,13 +281,12 @@
 		<div class="m-10">
 			<ul>
 				<FragmentListItem>Порядковый номер начиная с нуля и далее по возрастанию</FragmentListItem>
-				<FragmentListItem
-					><span class="text-red-500">Не уникален</span> в рамках одного и того же топика</FragmentListItem
-				>
-				<FragmentListItem
-					>Партиция + Offset = <span class="wiggle-text text-yellow-400">Уникальность</span
-					></FragmentListItem
-				>
+				<FragmentListItem>
+					<span class="text-red-500">Не уникален</span> в рамках одного и того же топика
+				</FragmentListItem>
+				<FragmentListItem>
+					Партиция + Offset = <span class="wiggle-text text-yellow-400">Уникальность</span>
+				</FragmentListItem>
 			</ul>
 		</div>
 		<Notes>
@@ -310,7 +308,7 @@
 				Когда сообщения <span class="fadeout-text" data-text="исчезают">исчезают</span>
 			</div>
 			<div class="mt-10 flex flex-row justify-center space-x-10">
-				<div class="fragment flex w-2/6 flex-col items-center">
+				<div class="flex w-2/6 flex-col items-center">
 					<img
 						class="block h-full w-full object-contain"
 						src="{assetsDir}/old-message.webp"
@@ -318,7 +316,7 @@
 					/>
 					<div class="text-3xl">Слишком старые</div>
 				</div>
-				<div class="fragment flex w-2/6 flex-col items-center">
+				<div class="flex w-2/6 flex-col items-center">
 					<img
 						class="block h-full w-full object-contain"
 						src="{assetsDir}/partition-overflowed-with-messages.webp"
@@ -348,10 +346,10 @@
 					<FragmentListItem>
 						Партиция делится на один активный сегмент и ряд неактивных сегментов
 					</FragmentListItem>
-					<FragmentListItem>Аквивный открыт для записи</FragmentListItem>
+					<FragmentListItem>Активный открыт для записи</FragmentListItem>
 					<FragmentListItem>Неактивный открыт только для чтения</FragmentListItem>
-					<FragmentListItem
-						>Apache Kafka удаляет релевантные <span class="text-red-500">неактивные</span> сегменты
+					<FragmentListItem>
+						Apache Kafka удаляет релевантные <span class="text-yellow-400">неактивные</span> сегменты
 					</FragmentListItem>
 				</ul>
 			</div>
@@ -401,17 +399,8 @@
 			</Notes>
 		</Slide>
 		<Slide>
-			<div class="text-start text-4xl">
-				Пример: несколько разных сервисов читают один и тот же топик
-			</div>
-			<div class="mb-10 mt-10 flex flex-col gap-10">
-				<ul>
-					<FragmentListItem>Каждый сервис запущен на нескольких узлах</FragmentListItem>
-					<FragmentListItem>Оба сервиса должны получить все сообщения</FragmentListItem>
-					<FragmentListItem>
-						Каждое сообщение должно быть обработано одним узлом каждого сервиса
-					</FragmentListItem>
-				</ul>
+			<div class="text-start text-4xl">Пример: несколько сервисов читают один и тот же топик</div>
+			<div class="mb-10 mt-10 flex flex-col">
 				<div class="m-10 flex flex-col">
 					<svg data-src="{assetsDir}/event-flow-animation.svg"> </svg>
 				</div>
@@ -420,10 +409,10 @@
 				Как это обычно бывает, читают сообщения сразу несколько приложений MetricsCollector и
 				несколько OrderProcessor, например по две машины на каждый вид сервиса, то есть два
 				запущенных приложения MetricsCollector и два OrderProcessor.
-				<br /><br />
+				<br />
 				MetricsCollector и OrderProcessor занимаются разными вещами и каждое сообщение в топике Orders
 				должно быть прочитано ими обоими.
-				<br /><br />
+				<br />
 				Но при этом оба приложения MetricsCollector не должны прочесть одно сообщение дважды, ведь метрику
 				по заказу нужно посчитать единожды. То же самое справедливо и для двух приложений OrderProcessor.
 				Как в Apache Kafka достичь того, чтобы с одной стороны оба сервиса получили все сообщения, но
@@ -437,7 +426,8 @@
 				<ul class="space-y-2">
 					<FragmentListItem>Участники могут подписаться несколько топиков</FragmentListItem>
 					<FragmentListItem>
-						Партиции каждого топика распределяются между участниками одной и той же группы
+						Партиции каждого топика распределяются между участниками
+						<span class="text-yellow-400">одной</span> группы
 					</FragmentListItem>
 					<FragmentListItem>
 						Если подписчики располагаются в разных группах, то они получат одни и те же партиции
