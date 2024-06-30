@@ -1004,7 +1004,27 @@
 	<Slide bgImage="{assetsDir}/bg-thanks.webp" bgImageOpacity={defaultBgOpacity}>
 		<div class="text-8xl">Спасибо за внимание</div>
 		<Social />
-		<Notes>А на этом у меня всё, благодарю за ваше внимание и готов ответить на вопросы.</Notes>
+
+		<div class="flex items-center">
+			<div class="h-1/5 w-2/5 pr-2">
+				<img
+					class="pulse"
+					src="{assetsDir}/presentation-arrow.png"
+					alt="qr code this presentation"
+				/>
+			</div>
+
+			<img
+				class="h-1/5 w-1/5"
+				src="{assetsDir}/presentation-link-qr.png"
+				alt="qr code this presentation"
+			/>
+		</div>
+
+		<Notes>
+			А на этом у меня всё, благодарю за ваше внимание. Если вы хотите подробнее изучить
+			презентацию, то он доступна онлайн, а сейчас я готов ответить на вопросы.
+		</Notes>
 	</Slide>
 </Slides>
 
@@ -1080,6 +1100,22 @@
 	@keyframes draw-strikethrough {
 		to {
 			width: 100%;
+		}
+	}
+
+	.pulse {
+		animation: pulse 2s infinite;
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.1);
+		}
+		100% {
+			transform: scale(1);
 		}
 	}
 </style>
