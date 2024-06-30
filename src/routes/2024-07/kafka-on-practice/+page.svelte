@@ -962,6 +962,9 @@
 			src="{assetsDir}/live-demo-qr.png"
 			alt="qr code for the live demo"
 		/>
+		<a href="https://github.com/AxelUser/kafka-test-app" target="_blank">
+			github.com/AxelUser/kafka-test-app
+		</a>
 		<Notes>
 			Отлично, мы прошлись по теории, давайте немного посмотрим как это выглядит на практике. У меня
 			есть маленький игрушечный кластер, состоящий из двух приложений - Web API и фоновый
