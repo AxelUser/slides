@@ -4,11 +4,13 @@
 	const links = [
 		{
 			network: 'github',
-			title: 'github.com/AxelUser'
+			title: 'github.com/AxelUser',
+			url: 'https://github.com/AxelUser'
 		},
 		{
 			network: 'telegram',
-			title: 't.me/AxelUser'
+			title: 't.me/AxelUser',
+			url: 'https://t.me/AxelUser'
 		}
 	];
 </script>
@@ -21,7 +23,7 @@
 	</div>
 	<div class="mt-4 flex flex-col items-start gap-6">
 		{#each links as link}
-			<a class="flex items-start gap-4" href="https://github.com/AxelUser" target="_blank">
+			<a class="flex items-start gap-4" href={link.url} target="_blank">
 				<SocialIcons
 					network={link.network}
 					fgColor="#111111"
