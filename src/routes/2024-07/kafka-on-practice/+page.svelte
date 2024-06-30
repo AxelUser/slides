@@ -311,7 +311,7 @@
 			только на одно сообщение в топике.
 		</Notes>
 	</Slide>
-	<Slide>
+	<Slide bgImage="{assetsDir}/topic-retention-bg.webp" bgImageOpacity={defaultBgOpacity}>
 		<Slide>
 			<div class="text-6xl">
 				Когда сообщения <span class="fadeout-text" data-text="исчезают">исчезают</span>
