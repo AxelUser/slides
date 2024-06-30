@@ -1005,7 +1005,7 @@
 		<div class="text-8xl">Спасибо за внимание</div>
 		<Social />
 
-		<div class="flex items-center">
+		<div class="mt-6 flex items-center">
 			<div class="h-1/5 w-2/5 pr-2">
 				<img
 					class="pulse"
