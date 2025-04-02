@@ -3,6 +3,10 @@
 		{
 			title: 'Кафка на практике',
 			url: './2024-07/kafka-on-practice'
+		},
+		{
+			title: 'Проектируем Apache Kafka с умом',
+			url: './2025-04/kafka-planning'
 		}
 	];
 </script>
